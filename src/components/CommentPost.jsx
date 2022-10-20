@@ -47,6 +47,7 @@ const CommentPost = ({ post }) => {
 
         //ici je vais chercher l'update dans la base de donnnée.
         dispatch(addComment(post.id, data));
+        //ici je vide le formulaire après l'envoie.
     answerContent.current.value = "";
     };
     

@@ -20,6 +20,7 @@ export default function postReducer(state = initialState, action) {
                     };
                 } else return post;
             });
+            //ici je supprime un post avec delete post tous les post qui ne sont pas égale a l'action du payload.
             case DELETE_POST:
                 return state.filter((post) =>  post.id !== action.payload.postId);
             case ADD_COMMENT:

@@ -1,10 +1,12 @@
-import { doc, updateDoc } from "firebase/firestore"
+
 import React, { useState } from "react"
 import { useDispatch } from "react-redux";
 import { editPost } from "../actions/post.action";
 import CommentPost from "./CommentPost"
 import Delete from "./Delete"
 
+//ici je recupère le POST ecrit + l'utilisateur
+// ici je crée mes variables
 const Post = ({ post, user }) => {
     const [edit, setEdit] = useState(false);
     const [editMess, setEditMess] = useState(null);
@@ -12,6 +14,7 @@ const Post = ({ post, user }) => {
 
     const dateFormater = (date) => {
         //ici mon post présente une date de publication afficher en jour
+        //1000 secondes - 3600 minutes - 24 jours 
         let days = Math.floor((new Date() - new Date(date)) / (1000 * 3600 * 24));
 
         //ici je dit a mon post d'inscrire a coté de la date 'posté aujourd hui'.
@@ -24,6 +27,8 @@ const Post = ({ post, user }) => {
         }
     };
 
+    //ici je crée une fonction qui va me permettre d'éditer le message.
+    //alors je lui dit : si tu a un message alors tu lance le message, sinon if tu ne fais rien.
     const handleEdit = () => {
         setEdit(false);
     
@@ -50,6 +55,8 @@ const Post = ({ post, user }) => {
                     <h5>Posté {dateFormater(post.date)}</h5>
                 </div>
                 {post.authorId === user?.uid && (
+                    //ici je demande a authordId si l'auteurs du post et bien celui qui crée le post ? 
+                    //c'est pour éviter qu'ont est la possibilité de supprimer le post d'un autre utilisateurs.
                 <div className='right-part'>
                     <span onClick={() => setEdit(!edit)}>
                     <i className='fa-solid fa-pen-to-square'></i>

@@ -37,3 +37,8 @@ import { addPost, getPosts } from '../actions/post.action';
 };
 
 export default CreatePost;
+
+
+
+
+

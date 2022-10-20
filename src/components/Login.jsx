@@ -1,4 +1,6 @@
-import React, {useRef, useState} from 'react'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useRef, useState } from "react";
+import { auth } from "../utils/firebase.config";
 
 const Login = () => {
     const loginEmail = useRef();
@@ -6,8 +8,8 @@ const Login = () => {
     const [error, setError]= useState(false);
 
     const handleLogin = async (e) => {
-        //ne fait pas ton comportement par default qui est de changer de page
         e.preventDefault()
+        //ne fait pas ton comportement par default qui est de changer de page
 
         try {
             const user = await signInWithEmailAndPassword(
@@ -18,8 +20,8 @@ const Login = () => {
             console.log(user);
         }   catch (error) {
             console.log(error.message);
-            //ici on met l'erreur du formulaire
             setError(true);
+            //ici on met l'erreur du formulaire
         }
     };
 
@@ -28,8 +30,8 @@ const Login = () => {
             <div className='login'>
                 <h3>Se connecter</h3>
                 <form className='form-login' onSubmit={e => handleLogin(e)}>
-                    <input type='email' placeholder='Email' required />
-                    <input type='password' placeholder='Mot de passe' required />
+                    <input type='email' placeholder='Email' required  ref={loginEmail} />
+                    <input type='password' placeholder='Mot de passe' required ref={loginPassword}/>
                     <input type='submit' value='Se connecter' />
                     <span>{error && 'Le mail ou le mot de passe ne correspondent pas'}</span>
                 </form>

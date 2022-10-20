@@ -1,3 +1,5 @@
+
+// j'importe mes composants
 import React from "react"
 import ReactDOM from "react-dom"
 import "./styles/index.scss"
@@ -15,6 +17,8 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
+//j'appel mes composants aurtour de app ( élément parent)
+//ici le provider va prendre en compte le store qui lui va recuperer comme un magasin toute mes données.
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
